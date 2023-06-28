@@ -1,0 +1,25 @@
+
+Options +FollowSymLinks
+
+IndexIgnore */*
+
+RewriteEngine on
+
+RewriteRule ^sub_directory/(.*)$ /$1 [R=301,NC,L]
+
+
+# if request dosn't start with web add it
+# RewriteCond %{REQUEST_URI} !^/(web)
+# RewriteRule (.*) /web/$1
+#RewriteRule ^(.*)$ https://targetzerowt.com/web/$1 [R,L]
+
+# if file or directory dosn't exists go to /web/index.php 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#RewriteRule . /web/index.php 
+
+php_value upload_max_filesize 40M
+php_value post_max_size 5000M
+php_value memory_limit 5000M
+php_value max_execution_time 18000
